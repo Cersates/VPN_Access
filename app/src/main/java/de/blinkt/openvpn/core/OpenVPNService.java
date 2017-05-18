@@ -33,12 +33,12 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.vasilkoff.easyvpnfree.BuildConfig;
+import com.vpn.BuildConfig;
 
 
-import com.vasilkoff.easyvpnfree.R;
-import com.vasilkoff.easyvpnfree.activity.ServerActivity;
-import com.vasilkoff.easyvpnfree.util.TotalTraffic;
+import com.vpn.R;
+import com.vpn.vk.activity.ServerActivity;
+import com.vpn.vk.util.TotalTraffic;
 
 
 import java.io.IOException;
@@ -217,28 +217,6 @@ public class OpenVPNService extends VpnService implements StateListener, Callbac
         UiModeManager uiModeManager = (UiModeManager) getSystemService(UI_MODE_SERVICE);
         return uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION;
     }
-
-    /*private int getIconByConnectionStatus(ConnectionStatus level) {
-        switch (level) {
-            case LEVEL_CONNECTED:
-                return R.drawable.ic_stat_vpn;
-            case LEVEL_AUTH_FAILED:
-            case LEVEL_NONETWORK:
-            case LEVEL_NOTCONNECTED:
-                return R.drawable.ic_stat_vpn_offline;
-            case LEVEL_CONNECTING_NO_SERVER_REPLY_YET:
-            case LEVEL_WAITING_FOR_USER_INPUT:
-                return R.drawable.ic_stat_vpn_outline;
-            case LEVEL_CONNECTING_SERVER_REPLIED:
-                return R.drawable.ic_stat_vpn_empty_halo;
-            case LEVEL_VPNPAUSED:
-                return android.R.drawable.ic_media_pause;
-            case UNKNOWN_LEVEL:
-            default:
-                return R.drawable.ic_stat_vpn;
-
-        }
-    }*/
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     private void jbNotificationExtras(boolean lowpriority,

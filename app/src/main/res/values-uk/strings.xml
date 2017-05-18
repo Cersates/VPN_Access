@@ -3,8 +3,8 @@
     <string name="action_about">Про додаток</string>
     <string name="home_btn_choose_country">Виберіть країну</string>
     <string name="home_pop_up_title_choose_country">Виберіть країну</string>
-    <string name="server_btn_connect">Підключити</string>
-    <string name="server_btn_disconnect">Відключити</string>
+    <string name="server_btn_connect">Підключено</string>
+    <string name="server_btn_disconnect">Відключено</string>
     <string name="server_txt_ping">Пінг:</string>
     <string name="server_txt_sessions">Сесії:</string>
     <string name="server_txt_speed">Швидкість:</string>
@@ -59,11 +59,6 @@
     <string name="rating_text">Ми намагаємося зробити додаток краще!
         \nВи хочете, щоб показати свою підтримку,
         \nоцінить нас?
-    </string>
-    <string name="share_text">
-        Easy VPN Free! Відкритий вихідний код, без обмежень і 100% безкоштовний!
-        \nБільше ніж 22 країни для піключення і розблокування всіх заблокований сайтів.
-        \n\nhttps://play.google.com/store/apps/details?id=com.vasilkoff.easyvpnfree
     </string>
     <string name="automatic_switching">Автоматичне переключання</string>
     <string name="automatic_switching_category">Автоматичне переключання</string>

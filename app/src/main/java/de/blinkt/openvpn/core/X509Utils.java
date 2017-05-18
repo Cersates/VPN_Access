@@ -10,7 +10,7 @@ import android.content.res.Resources;
 import android.text.TextUtils;
 
 
-import com.vasilkoff.easyvpnfree.R;
+import com.vpn.R;
 
 import de.blinkt.openvpn.VpnProfile;
 import org.spongycastle.util.io.pem.PemObject;
@@ -27,7 +27,6 @@ import java.security.cert.CertificateExpiredException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.CertificateNotYetValidException;
 import java.security.cert.X509Certificate;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.Vector;

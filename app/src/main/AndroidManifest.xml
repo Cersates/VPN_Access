@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.vasilkoff.easyvpnfree">
+    package="com.vpn">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -8,13 +8,13 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name=".App"
+        android:name="com.doit.vpnfree.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.LauncherActivity">
+        <activity android:name="com.doit.vpnfree.activity.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,21 +22,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.LoaderActivity"
+            android:name="com.doit.vpnfree.activity.LoaderActivity"
             android:noHistory="true" />
-        <activity android:name=".activity.HomeActivity">
+        <activity android:name="com.doit.vpnfree.activity.HomeActivity">
 
         </activity>
-        <activity android:name=".activity.ServersListActivity" />
+        <activity android:name="com.doit.vpnfree.activity.ServersListActivity" />
         <activity
-            android:name=".activity.ServerActivity"
+            android:name="com.doit.vpnfree.activity.ServerActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".activity.AboutActivity" />
+        <activity android:name=".vk.activity.AboutActivity" />
         <activity
-            android:name=".activity.ServersInfo"
+            android:name="com.doit.vpnfree.activity.ServersInfo"
             android:theme="@style/AppTheme.PopUp" />
         <activity
-            android:name=".activity.MyPreferencesActivity"
+            android:name=".vk.activity.MyPreferencesActivity"
             android:label="@string/action_settings"
             android:noHistory="true" />
 
@@ -83,7 +83,7 @@
 
         <service android:name="com.google.android.gms.analytics.CampaignTrackingService" />
 
-        <activity android:name=".activity.BookmarkServerListActivity"></activity>
+        <activity android:name=".vk.activity.BookmarkServerListActivity"></activity>
     </application>
 
 </manifest>

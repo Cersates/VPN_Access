@@ -5,7 +5,7 @@
 
 package de.blinkt.openvpn.core;
 
-import com.vasilkoff.easyvpnfree.R;
+import com.vpn.R;
 
 import java.net.InetSocketAddress;
 import java.net.MalformedURLException;

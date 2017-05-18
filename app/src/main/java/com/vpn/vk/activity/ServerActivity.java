@@ -1,0 +1,458 @@
+package com.vpn.vk.activity;
+
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
+import android.net.VpnService;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.support.v7.app.AlertDialog;
+import android.util.Base64;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
+
+import com.vpn.BuildConfig;
+import com.vpn.R;
+import com.vpn.vk.model.Server;
+import com.vpn.vk.util.PropertiesService;
+import com.vpn.vk.util.TotalTraffic;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.concurrent.TimeUnit;
+
+import de.blinkt.openvpn.VpnProfile;
+import de.blinkt.openvpn.core.ConfigParser;
+import de.blinkt.openvpn.core.OpenVPNService;
+import de.blinkt.openvpn.core.ProfileManager;
+import de.blinkt.openvpn.core.VPNLaunchHelper;
+import de.blinkt.openvpn.core.VpnStatus;
+
+public class ServerActivity extends BaseActivity {
+
+    private static final int START_VPN_PROFILE = 70;
+    private BroadcastReceiver br;
+    private BroadcastReceiver trafficReceiver;
+    public final static String BROADCAST_ACTION = "de.blinkt.openvpn.VPN_STATUS";
+
+    private static OpenVPNService mVPNService;
+    private VpnProfile vpnProfile;
+
+    private Server currentServer = null;
+    private ToggleButton serverConnect;
+    private TextView toggleButtonText;
+    private ProgressBar connectingProgress;
+    private LinearLayout parentLayout;
+
+    private boolean autoConnection;
+    private boolean fastConnection;
+    private Server autoServer;
+
+    private boolean statusConnection = false;
+    private boolean firstData = true;
+
+    private WaitConnectionAsync waitConnection;
+    private boolean inBackground;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_server);
+
+        parentLayout = (LinearLayout) findViewById(R.id.serverParentLayout);
+        connectingProgress = (ProgressBar) findViewById(R.id.serverConnectingProgress);
+        serverConnect = (ToggleButton) findViewById(R.id.serverConnect);
+        serverConnect.setText(null);
+        serverConnect.setTextOn(null);
+        serverConnect.setTextOff(null);
+        toggleButtonText = (TextView) findViewById(R.id.toggleButtonText);
+
+        br = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                receiveStatus(context, intent);
+            }
+        };
+
+        registerReceiver(br, new IntentFilter(BROADCAST_ACTION));
+
+        trafficReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                receiveTraffic(context, intent);
+            }
+        };
+
+        registerReceiver(trafficReceiver, new IntentFilter(TotalTraffic.TRAFFIC_ACTION));
+
+        initView(getIntent());
+
+        if (checkStatus()) {
+            serverConnect.setChecked(false);
+        } else {
+            serverConnect.setChecked(true);
+        }
+    }
+
+    private void initView(Intent intent) {
+
+        autoConnection = intent.getBooleanExtra("autoConnection", false);
+        fastConnection = intent.getBooleanExtra("fastConnection", false);
+        currentServer = (Server) intent.getParcelableExtra(Server.class.getCanonicalName());
+
+        if (currentServer == null) {
+            if (connectedServer != null) {
+                currentServer = connectedServer;
+            } else {
+                onBackPressed();
+                return;
+            }
+        }
+
+        int bookmarkBg = dbHelper.checkBookmark(currentServer) ?
+                R.drawable.ic_bookmark_red :
+                R.drawable.ic_bookmark_grey;
+
+        String code = currentServer.getCountryShort().toLowerCase();
+        if (code.equals("do"))
+            code = "dom";
+
+        String localeCountryName = localeCountries.get(currentServer.getCountryShort()) != null ?
+                localeCountries.get(currentServer.getCountryShort()) : currentServer.getCountryLong();
+
+        double speedValue = (double) Integer.parseInt(currentServer.getSpeed()) / 1048576;
+        speedValue = new BigDecimal(speedValue).setScale(3, RoundingMode.UP).doubleValue();
+        String speed = String.valueOf(speedValue) + " " + getString(R.string.mbps);
+
+        if (checkStatus()) {
+            toggleButtonText.setText(getString(R.string.server_btn_connect));
+        } else {
+            toggleButtonText.setText(getString(R.string.server_btn_disconnect));
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        initView(intent);
+    }
+
+    private void receiveTraffic(Context context, Intent intent) {
+        if (checkStatus()) {
+            String in = "";
+            String out = "";
+            if (firstData) {
+                firstData = false;
+            } else {
+                in = String.format(getResources().getString(R.string.traffic_in),
+                        intent.getStringExtra(TotalTraffic.DOWNLOAD_SESSION));
+                out = String.format(getResources().getString(R.string.traffic_out),
+                        intent.getStringExtra(TotalTraffic.UPLOAD_SESSION));
+            }
+        }
+    }
+
+    private void receiveStatus(Context context, Intent intent) {
+        if (checkStatus()) {
+            changeServerStatus(VpnStatus.ConnectionStatus.valueOf(intent.getStringExtra("status")));
+        }
+
+        if (intent.getStringExtra("detailstatus").equals("NOPROCESS")) {
+            try {
+                TimeUnit.SECONDS.sleep(1);
+                if (!VpnStatus.isVPNActive())
+                    prepareStopVPN();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        if (waitConnection != null)
+            waitConnection.cancel(false);
+
+        if (isTaskRoot()) {
+            startActivity(new Intent(this, HomeActivity.class));
+            finish();
+        }
+    }
+
+    private boolean checkStatus() {
+        if (connectedServer != null && connectedServer.getHostName().equals(currentServer.getHostName())) {
+            return VpnStatus.isVPNActive();
+        }
+
+        return false;
+    }
+
+    private void changeServerStatus(VpnStatus.ConnectionStatus status) {
+        switch (status) {
+            case LEVEL_CONNECTED:
+                statusConnection = true;
+                connectingProgress.setVisibility(View.GONE);
+
+                if (!inBackground) {
+                    if (PropertiesService.getDownloaded() >= 104857600 && PropertiesService.getShowRating()
+                            && BuildConfig.FLAVOR != "underground") {
+                        PropertiesService.setShowRating(false);
+                    }
+                }
+
+                toggleButtonText.setText(getString(R.string.server_btn_connect));
+                break;
+            case LEVEL_NOTCONNECTED:
+                toggleButtonText.setText(getString(R.string.server_btn_disconnect));
+                break;
+            default:
+                toggleButtonText.setText(getString(R.string.server_btn_connect));
+                statusConnection = false;
+                connectingProgress.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void prepareVpn() {
+        connectingProgress.setVisibility(View.VISIBLE);
+        if (loadVpnProfile()) {
+            waitConnection = new WaitConnectionAsync();
+            waitConnection.execute();
+            toggleButtonText.setText(getString(R.string.server_btn_connect));
+            startVpn();
+        } else {
+            connectingProgress.setVisibility(View.GONE);
+            Toast.makeText(this, getString(R.string.server_error_loading_profile), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void serverOnClick(View view) {
+        switch (view.getId()) {
+            case R.id.serverConnect:
+                if (checkStatus()) {
+                    serverConnect.setChecked(false);
+                    stopVpn();
+                } else {
+                    serverConnect.setChecked(true);
+                    prepareVpn();
+                }
+                break;
+        }
+    }
+
+    private boolean loadVpnProfile() {
+        byte[] data = Base64.decode(currentServer.getConfigData(), Base64.DEFAULT);
+        ConfigParser cp = new ConfigParser();
+        InputStreamReader isr = new InputStreamReader(new ByteArrayInputStream(data));
+        try {
+            cp.parseConfig(isr);
+            vpnProfile = cp.convertProfile();
+            vpnProfile.mName = currentServer.getCountryLong();
+
+            vpnProfile.mOverrideDNS = true;
+            vpnProfile.mDNS1 = "198.101.242.72";
+            vpnProfile.mDNS2 = "23.253.163.53";
+
+            ProfileManager.getInstance(this).addProfile(vpnProfile);
+        } catch (IOException | ConfigParser.ConfigParseError e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+    private void prepareStopVPN() {
+        statusConnection = false;
+        if (waitConnection != null)
+            waitConnection.cancel(false);
+        connectingProgress.setVisibility(View.GONE);
+        toggleButtonText.setText(getString(R.string.server_btn_disconnect));
+        connectedServer = null;
+    }
+
+    public void stopVpn() {
+        //prepareStopVPN();
+        ProfileManager.setConntectedVpnProfileDisconnected(this);
+        if (mVPNService != null && mVPNService.getManagement() != null)
+            mVPNService.getManagement().stopVPN(false);
+
+    }
+
+    private void startVpn() {
+        connectedServer = currentServer;
+        hideCurrentConnection = true;
+
+        Intent intent = VpnService.prepare(this);
+
+        if (intent != null) {
+            VpnStatus.updateStateString("USER_VPN_PERMISSION", "", R.string.state_user_vpn_permission,
+                    VpnStatus.ConnectionStatus.LEVEL_WAITING_FOR_USER_INPUT);
+            // Start the query
+            try {
+                startActivityForResult(intent, START_VPN_PROFILE);
+            } catch (ActivityNotFoundException ane) {
+                // Shame on you Sony! At least one user reported that
+                // an official Sony Xperia Arc S image triggers this exception
+                VpnStatus.logError(R.string.no_vpn_support_image);
+            }
+        } else {
+            onActivityResult(START_VPN_PROFILE, Activity.RESULT_OK, null);
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        inBackground = false;
+
+        if (currentServer.getCity() == null)
+            getIpInfo(currentServer);
+
+        if (connectedServer != null && currentServer.getIp().equals(connectedServer.getIp())) {
+            hideCurrentConnection = true;
+            invalidateOptionsMenu();
+        }
+
+
+        Intent intent = new Intent(this, OpenVPNService.class);
+        intent.setAction(OpenVPNService.START_SERVICE);
+        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+
+        if (checkStatus()) {
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            if (!checkStatus()) {
+                connectedServer = null;
+                toggleButtonText.setText(getString(R.string.server_btn_disconnect));
+            }
+        } else {
+            toggleButtonText.setText(getString(R.string.server_btn_disconnect));
+            if (autoConnection) {
+                prepareVpn();
+            }
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        inBackground = true;
+        unbindService(mConnection);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(br);
+        unregisterReceiver(trafficReceiver);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            switch (requestCode) {
+                case START_VPN_PROFILE:
+                    VPNLaunchHelper.startOpenVpn(vpnProfile, getBaseContext());
+                    break;
+            }
+        }
+    }
+
+    private ServiceConnection mConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            OpenVPNService.LocalBinder binder = (OpenVPNService.LocalBinder) service;
+            mVPNService = binder.getService();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            mVPNService = null;
+        }
+
+    };
+
+    private class WaitConnectionAsync extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                TimeUnit.SECONDS.sleep(PropertiesService.getAutomaticSwitchingSeconds());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            if (!statusConnection) {
+                if (currentServer != null)
+                    dbHelper.setInactive(currentServer.getIp());
+
+                if (fastConnection) {
+                    stopVpn();
+                    newConnecting(getRandomServer(), true, true);
+                } else if (PropertiesService.getAutomaticSwitching()) {
+                    if (!inBackground)
+                        showAlert();
+                }
+            }
+        }
+    }
+
+    private void showAlert() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getString(R.string.try_another_server_text))
+                .setPositiveButton(getString(R.string.try_another_server_ok),
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                                stopVpn();
+                                autoServer = dbHelper.getSimilarServer(currentServer.getCountryLong(), currentServer.getIp());
+                                if (autoServer != null) {
+                                    newConnecting(autoServer, false, true);
+                                } else {
+                                    onBackPressed();
+                                }
+                            }
+                        })
+                .setNegativeButton(getString(R.string.try_another_server_no),
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                if (!statusConnection) {
+                                    waitConnection = new WaitConnectionAsync();
+                                    waitConnection.execute();
+                                }
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+}

@@ -8,7 +8,6 @@ buildscript {
     }
 }
 apply plugin: 'com.android.application'
-apply plugin: 'io.fabric'
 
 repositories {
     maven { url 'https://maven.fabric.io/public' }
@@ -20,36 +19,16 @@ android {
     buildToolsVersion "24.0.2"
 
     defaultConfig {
-        applicationId "com.vasilkoff.easyvpnfree"
+        applicationId "com.vpn.vk"
         minSdkVersion 17
         targetSdkVersion 24
-        versionCode 48
-        versionName "1.5"
-        setProperty("archivesBaseName", "easyvpnfree-$versionName-$versionCode")
+        versionCode 1
+        versionName "1.0"
+        setProperty("archivesBaseName", "Доступ к Вконтакте-$versionName-$versionCode")
     }
 
     lintOptions {
         disable 'MissingTranslation'
-    }
-
-    productFlavors {
-        free {
-            applicationId "com.vasilkoff.easyvpnfree"
-            resValue "string", "app_name", "Easy VPN Free"
-            resValue "string", "notification_title", "Easy VPN Free - %s"
-        }
-
-        pro {
-            applicationId "com.vasilkoff.easyvpn"
-            resValue "string", "app_name", "Easy VPN"
-            resValue "string", "notification_title", "Easy VPN - %s"
-        }
-
-        underground {
-            applicationId "com.vasilkoff.easyvpnunderground"
-            resValue "string", "app_name", "Easy VPN"
-            resValue "string", "notification_title", "Easy VPN - %s"
-        }
     }
 
     buildTypes {
@@ -57,10 +36,6 @@ android {
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            ndk {
-//              //abiFilters "armeabi" "x86"
-//                abiFilters "armeabi-v7a", "armeabi", "arm64-v8a" // includes ARM SO files only, so no x86 SO file
-//            }
         }
     }
 }
@@ -78,11 +53,5 @@ dependencies {
     compile 'com.daimajia.numberprogressbar:library:1.2@aar'
     compile 'com.amitshekhar.android:android-networking:0.2.0'
     compile 'com.google.code.gson:gson:2.7'
-    compile 'org.mapsforge:mapsforge-map-android:0.6.1'
     compile 'com.caverock:androidsvg:1.2.2-beta-1'
-    testCompile 'junit:junit:4.12'
-    compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
-        transitive = true;
-    }
-    compile 'com.google.android.gms:play-services-analytics:10.0.1'
 }

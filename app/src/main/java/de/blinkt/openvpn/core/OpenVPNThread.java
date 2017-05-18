@@ -8,7 +8,7 @@ package de.blinkt.openvpn.core;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
-import com.vasilkoff.easyvpnfree.R;
+import com.vpn.R;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -21,8 +21,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Locale;
-import java.util.Map;
-import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
