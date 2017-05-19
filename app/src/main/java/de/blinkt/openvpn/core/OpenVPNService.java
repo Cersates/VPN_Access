@@ -37,8 +37,8 @@ import com.vpn.BuildConfig;
 
 
 import com.vpn.R;
-import com.vpn.vk.activity.ServerActivity;
-import com.vpn.vk.util.TotalTraffic;
+import com.vpn.vkaccess.activity.ServerActivity;
+import com.vpn.vkaccess.util.TotalTraffic;
 
 
 import java.io.IOException;

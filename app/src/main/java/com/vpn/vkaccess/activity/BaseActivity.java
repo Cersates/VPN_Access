@@ -1,4 +1,4 @@
-package com.vpn.vk.activity;
+package com.vpn.vkaccess.activity;
 
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
@@ -10,12 +10,12 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
-import com.vpn.vk.App;
+import com.vpn.vkaccess.App;
 import com.vpn.R;
-import com.vpn.vk.database.DBHelper;
-import com.vpn.vk.model.Server;
-import com.vpn.vk.util.CountriesNames;
-import com.vpn.vk.util.TotalTraffic;
+import com.vpn.vkaccess.database.DBHelper;
+import com.vpn.vkaccess.model.Server;
+import com.vpn.vkaccess.util.CountriesNames;
+import com.vpn.vkaccess.util.TotalTraffic;
 
 import org.json.JSONArray;
 import org.json.JSONException;

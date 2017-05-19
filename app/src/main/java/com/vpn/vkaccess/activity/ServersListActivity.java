@@ -1,4 +1,4 @@
-package com.vpn.vk.activity;
+package com.vpn.vkaccess.activity;
 
 import android.content.Intent;
 
@@ -8,8 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.vpn.R;
-import com.vpn.vk.adapter.ServerListAdapter;
-import com.vpn.vk.model.Server;
+import com.vpn.vkaccess.adapter.ServerListAdapter;
+import com.vpn.vkaccess.model.Server;
 
 import java.util.List;
 

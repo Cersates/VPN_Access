@@ -1,4 +1,4 @@
-package com.vpn.vk;
+package com.vpn.vkaccess;
 
 import android.app.Application;
 import android.content.Context;

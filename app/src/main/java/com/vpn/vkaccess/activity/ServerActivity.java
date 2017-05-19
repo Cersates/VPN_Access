@@ -1,4 +1,4 @@
-package com.vpn.vk.activity;
+package com.vpn.vkaccess.activity;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -27,10 +27,10 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.vpn.BuildConfig;
 import com.vpn.R;
-import com.vpn.vk.App;
-import com.vpn.vk.model.Server;
-import com.vpn.vk.util.PropertiesService;
-import com.vpn.vk.util.TotalTraffic;
+import com.vpn.vkaccess.App;
+import com.vpn.vkaccess.model.Server;
+import com.vpn.vkaccess.util.PropertiesService;
+import com.vpn.vkaccess.util.TotalTraffic;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -265,6 +265,16 @@ public class ServerActivity extends BaseActivity {
                     serverConnect.setChecked(true);
                     prepareVpn();
                 }
+                break;
+            case R.id.settingsBtn:
+//                final String PACKAGE_PREFIX = VpnManager.class.getPackage().getName() + ".";
+//                String ACTION_VPN_SETTINGS = PACKAGE_PREFIX + "SETTINGS";
+//                Intent intent = new Intent(ACTION_VPN_SETTINGS);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                mContext.startActivity(intent);
+                Intent intent = new Intent("android.net.vpn.SETTINGS");
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 break;
         }
     }

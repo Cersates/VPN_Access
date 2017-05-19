@@ -1,10 +1,10 @@
-package com.vpn.vk.util;
+package com.vpn.vkaccess.util;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.vpn.vk.App;
+import com.vpn.vkaccess.App;
 
 
 public class NetworkState {

@@ -1,4 +1,4 @@
-package com.vpn.vk.util;
+package com.vpn.vkaccess.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

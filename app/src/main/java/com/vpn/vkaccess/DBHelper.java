@@ -1,4 +1,4 @@
-package com.vpn.vk.database;
+package com.vpn.vkaccess.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,8 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
-import com.vpn.vk.model.Server;
-import com.vpn.vk.util.ConnectionQuality;
+import com.vpn.vkaccess.model.Server;
+import com.vpn.vkaccess.util.ConnectionQuality;
 
 import org.json.JSONArray;
 import org.json.JSONException;
