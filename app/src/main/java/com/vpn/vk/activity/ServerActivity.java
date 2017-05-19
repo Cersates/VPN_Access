@@ -123,10 +123,6 @@ public class ServerActivity extends BaseActivity {
             }
         }
 
-        int bookmarkBg = dbHelper.checkBookmark(currentServer) ?
-                R.drawable.ic_bookmark_red :
-                R.drawable.ic_bookmark_grey;
-
         String code = currentServer.getCountryShort().toLowerCase();
         if (code.equals("do"))
             code = "dom";
@@ -138,11 +134,7 @@ public class ServerActivity extends BaseActivity {
         speedValue = new BigDecimal(speedValue).setScale(3, RoundingMode.UP).doubleValue();
         String speed = String.valueOf(speedValue) + " " + getString(R.string.mbps);
 
-        if (checkStatus()) {
-            toggleButtonText.setText(getString(R.string.server_btn_connect));
-        } else {
-            toggleButtonText.setText(getString(R.string.server_btn_disconnect));
-        }
+        toggleButtonText.setText(getString(R.string.server_btn_access));
     }
 
     @Override
@@ -205,6 +197,7 @@ public class ServerActivity extends BaseActivity {
     }
 
     private void changeServerStatus(VpnStatus.ConnectionStatus status) {
+        toggleButtonText.setText(getString(R.string.server_btn_access));
         switch (status) {
             case LEVEL_CONNECTED:
                 statusConnection = true;
@@ -216,14 +209,9 @@ public class ServerActivity extends BaseActivity {
                         PropertiesService.setShowRating(false);
                     }
                 }
-
-                toggleButtonText.setText(getString(R.string.server_btn_connect));
-                break;
-            case LEVEL_NOTCONNECTED:
-                toggleButtonText.setText(getString(R.string.server_btn_disconnect));
                 break;
             default:
-                toggleButtonText.setText(getString(R.string.server_btn_connect));
+                toggleButtonText.setText(getString(R.string.server_btn_access));
                 statusConnection = false;
                 connectingProgress.setVisibility(View.VISIBLE);
         }
@@ -234,7 +222,7 @@ public class ServerActivity extends BaseActivity {
         if (loadVpnProfile()) {
             waitConnection = new WaitConnectionAsync();
             waitConnection.execute();
-            toggleButtonText.setText(getString(R.string.server_btn_connect));
+            toggleButtonText.setText(getString(R.string.server_btn_access));
             startVpn();
         } else {
             connectingProgress.setVisibility(View.GONE);
@@ -283,7 +271,7 @@ public class ServerActivity extends BaseActivity {
         if (waitConnection != null)
             waitConnection.cancel(false);
         connectingProgress.setVisibility(View.GONE);
-        toggleButtonText.setText(getString(R.string.server_btn_disconnect));
+        toggleButtonText.setText(getString(R.string.server_btn_access));
         connectedServer = null;
     }
 
@@ -343,10 +331,10 @@ public class ServerActivity extends BaseActivity {
             }
             if (!checkStatus()) {
                 connectedServer = null;
-                toggleButtonText.setText(getString(R.string.server_btn_disconnect));
+                toggleButtonText.setText(getString(R.string.server_btn_access));
             }
         } else {
-            toggleButtonText.setText(getString(R.string.server_btn_disconnect));
+            toggleButtonText.setText(getString(R.string.server_btn_access));
             if (autoConnection) {
                 prepareVpn();
             }

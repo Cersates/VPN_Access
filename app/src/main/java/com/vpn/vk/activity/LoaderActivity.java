@@ -48,7 +48,6 @@ public class LoaderActivity extends BaseActivity {
     private final String PREMIUM_FILE_NAME = "premiumServers.csv";
 
     private int percentDownload = 0;
-    private Stopwatch stopwatch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,7 +128,6 @@ public class LoaderActivity extends BaseActivity {
     }
 
     private void downloadCSVFile(String url, String fileName) {
-        stopwatch = new Stopwatch();
 
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
                 .connectTimeout(60, TimeUnit.SECONDS)
