@@ -1,4 +1,4 @@
-package com.vpn.vkaccess.activity;
+package com.vpn.openvk.activity;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 
 import com.vpn.R;
-import com.vpn.vkaccess.util.NetworkState;
+import com.vpn.openvk.util.NetworkState;
 
 public class LauncherActivity extends Activity {
     private static boolean loadStatus = false;

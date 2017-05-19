@@ -1,4 +1,4 @@
-package com.vpn.vkaccess.adapter;
+package com.vpn.openvk.adapter;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -10,10 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.vpn.R;
-import com.vpn.vkaccess.activity.BaseActivity;
-import com.vpn.vkaccess.model.Server;
-import com.vpn.vkaccess.util.ConnectionQuality;
-import com.vpn.vkaccess.util.CountriesNames;
+import com.vpn.openvk.activity.BaseActivity;
+import com.vpn.openvk.model.Server;
+import com.vpn.openvk.util.ConnectionQuality;
+import com.vpn.openvk.util.CountriesNames;
 
 import java.util.ArrayList;
 import java.util.List;

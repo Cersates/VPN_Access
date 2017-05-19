@@ -1,4 +1,4 @@
-package com.vpn.vkaccess.util;
+package com.vpn.openvk.util;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

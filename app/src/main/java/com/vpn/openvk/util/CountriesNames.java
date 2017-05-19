@@ -1,4 +1,4 @@
-package com.vpn.vkaccess.util;
+package com.vpn.openvk.util;
 
 import java.util.HashMap;
 import java.util.Locale;
