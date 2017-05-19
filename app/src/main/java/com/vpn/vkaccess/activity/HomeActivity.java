@@ -5,8 +5,6 @@ import android.util.Log;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.vpn.R;
 import com.vpn.vkaccess.App;
 import com.vpn.vkaccess.model.Server;
@@ -17,25 +15,13 @@ public class HomeActivity extends BaseActivity {
 
     public static final String EXTRA_COUNTRY = "country";
     private PopupWindow popupWindow;
-    private Tracker mTracker;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        App application = (App) getApplication();
-        mTracker = application.getDefaultTracker();
-        Log.i(App.TAG, "Экран старта Home ");
-        mTracker.setScreenName("ViewHome");
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
-
         Server randomServer = getRandomServer();
         if (randomServer != null) {
-            mTracker.send(new HitBuilders.EventBuilder()
-                    .setCategory("Action")
-                    .setAction("ConnectToVPN")
-                    .build());
             newConnecting(randomServer, true, true);
         } else {
             String randomError = String.format(getResources().getString(R.string.error_random_country), PropertiesService.getSelectedCountry());

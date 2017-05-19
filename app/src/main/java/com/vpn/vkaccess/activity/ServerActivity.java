@@ -23,8 +23,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.google.android.gms.analytics.HitBuilders;
-import com.google.android.gms.analytics.Tracker;
 import com.vpn.BuildConfig;
 import com.vpn.R;
 import com.vpn.vkaccess.App;
@@ -73,18 +71,10 @@ public class ServerActivity extends BaseActivity {
     private WaitConnectionAsync waitConnection;
     private boolean inBackground;
 
-    private Tracker mTracker;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_server);
-
-        App application = (App) getApplication();
-        mTracker = application.getDefaultTracker();
-        Log.i(App.TAG, "Экран переключателя VPN ");
-        mTracker.setScreenName("ViewServer");
-        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
         parentLayout = (LinearLayout) findViewById(R.id.serverParentLayout);
         connectingProgress = (ProgressBar) findViewById(R.id.serverConnectingProgress);
@@ -241,7 +231,7 @@ public class ServerActivity extends BaseActivity {
             toggleButtonText.setText(getString(R.string.server_btn_access));
             startVpn();
         } else {
-            connectingProgress.setVisibility(View.GONE);// no
+            connectingProgress.setVisibility(View.GONE);
             Toast.makeText(this, getString(R.string.server_error_loading_profile), Toast.LENGTH_SHORT).show();
         }
     }
@@ -250,31 +240,13 @@ public class ServerActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.serverConnect:
                 if (checkStatus()) {
-                    mTracker.send(new HitBuilders.EventBuilder()
-                            .setCategory("Action")
-                            .setAction("StartVPN")
-                            .build());
                     serverConnect.setChecked(false);
                     messageOkText.setVisibility(View.GONE);
                     stopVpn();
                 } else {
-                    mTracker.send(new HitBuilders.EventBuilder()
-                            .setCategory("Action")
-                            .setAction("StopVPN")
-                            .build());
                     serverConnect.setChecked(true);
                     prepareVpn();
                 }
-                break;
-            case R.id.settingsBtn:
-//                final String PACKAGE_PREFIX = VpnManager.class.getPackage().getName() + ".";
-//                String ACTION_VPN_SETTINGS = PACKAGE_PREFIX + "SETTINGS";
-//                Intent intent = new Intent(ACTION_VPN_SETTINGS);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                mContext.startActivity(intent);
-                Intent intent = new Intent("android.net.vpn.SETTINGS");
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
                 break;
         }
     }
