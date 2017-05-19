@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AlertDialog;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -27,6 +28,7 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.vpn.BuildConfig;
 import com.vpn.R;
+import com.vpn.vkaccess.App;
 import com.vpn.vkaccess.model.Server;
 import com.vpn.vkaccess.util.PropertiesService;
 import com.vpn.vkaccess.util.TotalTraffic;
@@ -79,6 +81,13 @@ public class ServerActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_server);
+
+        App application = (App) getApplication();
+        mTracker = application.getDefaultTracker();
+        Log.i(App.TAG, "Экран переключателя VPN ");
+        mTracker.setScreenName("ViewServer");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         parentLayout = (LinearLayout) findViewById(R.id.serverParentLayout);
