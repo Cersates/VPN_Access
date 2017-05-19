@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "24810430750",
+    "project_id": "access-vk"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24810430750:android:f202ad41e022387e",
+        "android_client_info": {
+          "package_name": "com.vpn.vk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAk-QJ4NSWccrtTjEkUmup225197o6lBwo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-99552840-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:24810430750:android:8dbab788a9d51f9d",
+        "android_client_info": {
+          "package_name": "com.vpn.vkaccess"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAk-QJ4NSWccrtTjEkUmup225197o6lBwo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-99552840-3"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
