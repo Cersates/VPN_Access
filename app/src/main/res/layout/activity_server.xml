@@ -33,40 +33,46 @@
             android:minHeight="35dp"
             android:onClick="serverOnClick" />
 
+
+        <RelativeLayout
+            android:id="@+id/messages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/serverConnect">
+
+            <TextView
+                android:id="@+id/message_ok_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/app_ok_mesage"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                android:textColor="#ffffff"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/message_wait"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/app_wait_message"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+                android:textColor="#ffffff"
+                android:visibility="gone" />
+        </RelativeLayout>
+
         <ProgressBar
             android:id="@+id/serverConnectingProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/serverConnect"
+            android:layout_below="@+id/messages"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:indeterminateTint="#ffffff"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/message_ok_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/serverConnect"
-            android:layout_centerHorizontal="true"
-            android:text="@string/app_ok_mesage"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
-            android:textColor="#ffffff"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/message_wait"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/serverConnect"
-            android:layout_centerHorizontal="true"
-            android:text="@string/app_wait_message"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
-            android:textColor="#ffffff"
             android:visibility="gone" />
 
     </RelativeLayout>

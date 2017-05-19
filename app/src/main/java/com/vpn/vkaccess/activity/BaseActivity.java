@@ -6,11 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.widget.FrameLayout;
 
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.common.Priority;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONArrayRequestListener;
-import com.vpn.vkaccess.App;
 import com.vpn.R;
 import com.vpn.vkaccess.database.DBHelper;
 import com.vpn.vkaccess.model.Server;
@@ -62,8 +57,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         heightWindow = dm.heightPixels;
 
         localeCountries = CountriesNames.getCountries();
-
-        App application = (App) getApplication();
     }
 
     @Override
@@ -72,15 +65,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         TotalTraffic.saveTotal();
     }
 
-    protected boolean useToolbar() {
-        return true;
-    }
-
     protected boolean useHomeButton() {
-        return true;
-    }
-
-    protected boolean useMenu() {
         return true;
     }
 
@@ -98,9 +83,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             intent.putExtra("autoConnection", autoConnection);
             startActivity(intent);
         }
-    }
-
-    protected void ipInfoResult() {
     }
 
     protected void getIpInfo(Server server) {
@@ -123,23 +105,5 @@ public abstract class BaseActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
-        AndroidNetworking.post(getString(R.string.url_check_ip_batch))
-                .addJSONArrayBody(jsonArray)
-                .setTag("getIpInfo")
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .getAsJSONArray(new JSONArrayRequestListener() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        if (dbHelper.setIpInfo(response, serverList))
-                            ipInfoResult();
-                    }
-
-                    @Override
-                    public void onError(ANError error) {
-
-                    }
-                });
     }
 }

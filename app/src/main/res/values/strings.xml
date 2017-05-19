@@ -28,6 +28,7 @@
     <string name="action_refresh">Refresh servers list</string>
     <string name="action_share">Share</string>
     <string name="ok">Ok</string>
+
     <string name="network_error_message">Internet is not available, reconnect network and try again.</string>
     <string name="blocking_ads">Turn on ads filtering</string>
     <string name="more_servers">Get more servers</string>

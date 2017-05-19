@@ -121,11 +121,6 @@ public class LoaderActivity extends BaseActivity {
         return false;
     }
 
-    @Override
-    protected boolean useMenu() {
-        return false;
-    }
-
     private void downloadCSVFile(String url, String fileName) {
 
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder()

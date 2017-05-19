@@ -39,11 +39,6 @@ public class ServersListActivity extends BaseActivity {
         buildList();
     }
 
-    @Override
-    protected void ipInfoResult() {
-        serverListAdapter.notifyDataSetChanged();
-    }
-
     private void buildList() {
         String country = getIntent().getStringExtra(HomeActivity.EXTRA_COUNTRY);
         final List<Server> serverList = dbHelper.getServersByCountryCode(country);
