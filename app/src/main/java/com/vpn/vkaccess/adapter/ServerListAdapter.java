@@ -19,9 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Vasilkoff on 27/09/16.
- */
 public class ServerListAdapter extends BaseAdapter {
 
     private LayoutInflater inflater;
