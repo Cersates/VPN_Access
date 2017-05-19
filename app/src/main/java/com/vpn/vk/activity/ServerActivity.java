@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AlertDialog;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -22,8 +23,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.vpn.BuildConfig;
 import com.vpn.R;
+import com.vpn.vk.App;
 import com.vpn.vk.model.Server;
 import com.vpn.vk.util.PropertiesService;
 import com.vpn.vk.util.TotalTraffic;
@@ -69,10 +73,18 @@ public class ServerActivity extends BaseActivity {
     private WaitConnectionAsync waitConnection;
     private boolean inBackground;
 
+    private Tracker mTracker;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_server);
+
+        App application = (App) getApplication();
+        mTracker = application.getDefaultTracker();
+        Log.i(App.TAG, "Экран переключателя VPN ");
+        mTracker.setScreenName("ViewServer");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
 
         parentLayout = (LinearLayout) findViewById(R.id.serverParentLayout);
         connectingProgress = (ProgressBar) findViewById(R.id.serverConnectingProgress);
@@ -238,10 +250,18 @@ public class ServerActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.serverConnect:
                 if (checkStatus()) {
+                    mTracker.send(new HitBuilders.EventBuilder()
+                            .setCategory("Action")
+                            .setAction("StartVPN")
+                            .build());
                     serverConnect.setChecked(false);
                     messageOkText.setVisibility(View.GONE);
                     stopVpn();
                 } else {
+                    mTracker.send(new HitBuilders.EventBuilder()
+                            .setCategory("Action")
+                            .setAction("StopVPN")
+                            .build());
                     serverConnect.setChecked(true);
                     prepareVpn();
                 }
