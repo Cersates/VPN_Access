@@ -1,4 +1,4 @@
-package com.vpn.openvk;
+package com.vpn.openok;
 
 import android.app.Application;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.vpn.openvk.activity;
+package com.vpn.openok.activity;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -16,8 +16,8 @@ import com.androidnetworking.interfaces.DownloadProgressListener;
 import com.daimajia.numberprogressbar.NumberProgressBar;
 
 import com.vpn.R;
-import com.vpn.openvk.model.Server;
-import com.vpn.openvk.util.PropertiesService;
+import com.vpn.openok.model.Server;
+import com.vpn.openok.util.PropertiesService;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

@@ -1,4 +1,4 @@
-package com.vpn.openvk.util;
+package com.vpn.openok.util;
 
 public class ConnectionQuality {
 

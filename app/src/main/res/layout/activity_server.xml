@@ -4,9 +4,9 @@
     android:id="@+id/serverParentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="#F6881F"
     android:orientation="vertical"
-    tools:context="com.vpn.openvk.activity.ServerActivity">
+    tools:context="com.vpn.openok.activity.ServerActivity">
 
     <RelativeLayout
         android:layout_width="fill_parent"

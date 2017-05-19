@@ -1,4 +1,4 @@
-package com.vpn.openvk.activity;
+package com.vpn.openok.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.util.DisplayMetrics;
 import android.widget.TextView;
 
 import com.vpn.R;
-import com.vpn.openvk.database.DBHelper;
+import com.vpn.openok.database.DBHelper;
 
 public class ServersInfo extends AppCompatActivity {
 

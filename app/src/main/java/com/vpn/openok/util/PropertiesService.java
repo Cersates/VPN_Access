@@ -1,9 +1,9 @@
-package com.vpn.openvk.util;
+package com.vpn.openok.util;
 
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.vpn.openvk.App;
+import com.vpn.openok.App;
 
 public class PropertiesService {
 
