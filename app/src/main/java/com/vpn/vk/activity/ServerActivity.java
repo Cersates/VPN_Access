@@ -55,6 +55,7 @@ public class ServerActivity extends BaseActivity {
     private Server currentServer = null;
     private ToggleButton serverConnect;
     private TextView toggleButtonText;
+    private TextView messageOkText;
     private ProgressBar connectingProgress;
     private LinearLayout parentLayout;
 
@@ -76,9 +77,11 @@ public class ServerActivity extends BaseActivity {
         parentLayout = (LinearLayout) findViewById(R.id.serverParentLayout);
         connectingProgress = (ProgressBar) findViewById(R.id.serverConnectingProgress);
         serverConnect = (ToggleButton) findViewById(R.id.serverConnect);
+        messageOkText = (TextView) findViewById(R.id.message_ok_text);
         serverConnect.setText(null);
         serverConnect.setTextOn(null);
         serverConnect.setTextOff(null);
+        messageOkText.setVisibility(View.GONE);
         toggleButtonText = (TextView) findViewById(R.id.toggleButtonText);
 
         br = new BroadcastReceiver() {
@@ -103,6 +106,7 @@ public class ServerActivity extends BaseActivity {
 
         if (checkStatus()) {
             serverConnect.setChecked(false);
+            messageOkText.setVisibility(View.GONE);
         } else {
             serverConnect.setChecked(true);
         }
@@ -202,13 +206,13 @@ public class ServerActivity extends BaseActivity {
             case LEVEL_CONNECTED:
                 statusConnection = true;
                 connectingProgress.setVisibility(View.GONE);
-
                 if (!inBackground) {
                     if (PropertiesService.getDownloaded() >= 104857600 && PropertiesService.getShowRating()
                             && BuildConfig.FLAVOR != "underground") {
                         PropertiesService.setShowRating(false);
                     }
                 }
+                messageOkText.setVisibility(View.VISIBLE);
                 break;
             default:
                 toggleButtonText.setText(getString(R.string.server_btn_access));
@@ -225,7 +229,7 @@ public class ServerActivity extends BaseActivity {
             toggleButtonText.setText(getString(R.string.server_btn_access));
             startVpn();
         } else {
-            connectingProgress.setVisibility(View.GONE);
+            connectingProgress.setVisibility(View.GONE);// no
             Toast.makeText(this, getString(R.string.server_error_loading_profile), Toast.LENGTH_SHORT).show();
         }
     }
@@ -235,6 +239,7 @@ public class ServerActivity extends BaseActivity {
             case R.id.serverConnect:
                 if (checkStatus()) {
                     serverConnect.setChecked(false);
+                    messageOkText.setVisibility(View.GONE);
                     stopVpn();
                 } else {
                     serverConnect.setChecked(true);

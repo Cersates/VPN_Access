@@ -35,12 +35,23 @@
             android:id="@+id/serverConnectingProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/serverConnect"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:visibility="gone" />
 
+        <TextView
+            android:id="@+id/message_ok_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/serverConnect"
+            android:layout_centerHorizontal="true"
+            android:text="@string/app_ok_mesage"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+            android:visibility="gone" />
 
     </RelativeLayout>
 
