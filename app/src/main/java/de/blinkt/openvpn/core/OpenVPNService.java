@@ -31,6 +31,7 @@ import android.preference.PreferenceManager;
 import android.system.OsConstants;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.vpn.BuildConfig;
@@ -324,6 +325,8 @@ public class OpenVPNService extends VpnService implements StateListener, Callbac
         if (intent != null && DISCONNECT_VPN.equals(intent.getAction())) {
             if (mManagement != null)
                 mManagement.stopVPN(false);
+            ServerActivity.serverConnect.setChecked(false);
+            ServerActivity.messageOkText.setVisibility(View.GONE);
             return START_NOT_STICKY;
         }
 

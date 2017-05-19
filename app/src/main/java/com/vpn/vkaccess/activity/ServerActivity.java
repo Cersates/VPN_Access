@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.pm.ActivityInfo;
 import android.net.VpnService;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -55,9 +56,10 @@ public class ServerActivity extends BaseActivity {
     private VpnProfile vpnProfile;
 
     private Server currentServer = null;
-    private ToggleButton serverConnect;
+    public static ToggleButton serverConnect;
     private TextView toggleButtonText;
-    private TextView messageOkText;
+    public static TextView messageOkText;
+    private TextView messageWaitText;
     private ProgressBar connectingProgress;
     private LinearLayout parentLayout;
 
@@ -75,11 +77,13 @@ public class ServerActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_server);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         parentLayout = (LinearLayout) findViewById(R.id.serverParentLayout);
         connectingProgress = (ProgressBar) findViewById(R.id.serverConnectingProgress);
         serverConnect = (ToggleButton) findViewById(R.id.serverConnect);
         messageOkText = (TextView) findViewById(R.id.message_ok_text);
+        messageWaitText = (TextView) findViewById(R.id.message_wait);
         serverConnect.setText(null);
         serverConnect.setTextOn(null);
         serverConnect.setTextOff(null);
@@ -214,6 +218,7 @@ public class ServerActivity extends BaseActivity {
                         PropertiesService.setShowRating(false);
                     }
                 }
+                messageWaitText.setVisibility(View.GONE);
                 messageOkText.setVisibility(View.VISIBLE);
                 break;
             default:
@@ -245,6 +250,7 @@ public class ServerActivity extends BaseActivity {
                     stopVpn();
                 } else {
                     serverConnect.setChecked(true);
+                    messageWaitText.setVisibility(View.VISIBLE);
                     prepareVpn();
                 }
                 break;
@@ -344,6 +350,7 @@ public class ServerActivity extends BaseActivity {
             toggleButtonText.setText(getString(R.string.server_btn_access));
             if (autoConnection) {
                 prepareVpn();
+                messageWaitText.setVisibility(View.VISIBLE);
             }
         }
     }

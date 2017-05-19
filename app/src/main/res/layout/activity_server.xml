@@ -57,6 +57,18 @@
             android:textColor="#ffffff"
             android:visibility="gone" />
 
+        <TextView
+            android:id="@+id/message_wait"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/serverConnect"
+            android:layout_centerHorizontal="true"
+            android:text="@string/app_wait_message"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+            android:textColor="#ffffff"
+            android:visibility="gone" />
+
     </RelativeLayout>
 
 </LinearLayout>
