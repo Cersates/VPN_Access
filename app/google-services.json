@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "415256807151",
-    "project_id": "vpn-ok"
+    "project_number": "245341013754",
+    "project_id": "firebase-vpn-ok"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:415256807151:android:a6449b6e5017b118",
+        "mobilesdk_app_id": "1:245341013754:android:a93f865545e09207",
         "android_client_info": {
-          "package_name": "com.vpn.openok"
+          "package_name": "com.vpn.opennewok"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBg_dU85Qkm-XwbWKUCBhfp14AHYMh1re0"
+          "current_key": "AIzaSyBUbzp-IVvNMTcfz9YH7lvW5LUEx7HBEg8"
         }
       ],
       "services": {
         "analytics_service": {
           "status": 2,
           "analytics_property": {
-            "tracking_id": "UA-99626579-2"
+            "tracking_id": "UA-99627171-3"
           }
         },
         "appinvite_service": {
