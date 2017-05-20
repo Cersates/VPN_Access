@@ -61,7 +61,7 @@ public class ServerActivity extends BaseActivity {
     public static ToggleButton serverConnect;
     private TextView toggleButtonText;
     public static TextView messageOkText;
-    private TextView messageWaitText;
+    public static TextView messageWaitText;
     private ProgressBar connectingProgress;
     private LinearLayout parentLayout;
 
@@ -262,6 +262,7 @@ public class ServerActivity extends BaseActivity {
                             .build());
                     serverConnect.setChecked(false);
                     messageOkText.setVisibility(View.GONE);
+                    messageWaitText.setVisibility(View.GONE);
                     stopVpn();
                 } else {
                     mTracker.send(new HitBuilders.EventBuilder()
@@ -270,6 +271,7 @@ public class ServerActivity extends BaseActivity {
                             .build());
                     serverConnect.setChecked(true);
                     messageWaitText.setVisibility(View.VISIBLE);
+                    messageOkText.setVisibility(View.GONE);
                     prepareVpn();
                 }
                 break;
@@ -370,6 +372,7 @@ public class ServerActivity extends BaseActivity {
             if (autoConnection) {
                 prepareVpn();
                 messageWaitText.setVisibility(View.VISIBLE);
+                messageOkText.setVisibility(View.GONE);
             }
         }
     }
