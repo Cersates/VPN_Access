@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "119122464682",
-    "project_id": "firebase-vpn-vk"
+    "project_number": "795851538340",
+    "project_id": "vpn-vk-fad81"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:119122464682:android:a9304b36f6e34b5d",
+        "mobilesdk_app_id": "1:795851538340:android:52d85a8fb5224d77",
         "android_client_info": {
-          "package_name": "com.vpn.openvk"
+          "package_name": "com.vpn.opennewvk"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDwJc6bcmx7BRpJ5s-XqsEqeUcULOLNTV0"
+          "current_key": "AIzaSyBUtJJ_SekoGKXiS9Rv7OLub6m5uNVGMeE"
         }
       ],
       "services": {
         "analytics_service": {
           "status": 2,
           "analytics_property": {
-            "tracking_id": "UA-99626579-1"
+            "tracking_id": "UA-99627171-2"
           }
         },
         "appinvite_service": {
