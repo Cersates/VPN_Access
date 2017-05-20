@@ -258,7 +258,7 @@ public class ServerActivity extends BaseActivity {
                 if (checkStatus()) {
                     mTracker.send(new HitBuilders.EventBuilder()
                             .setCategory("Action")
-                            .setAction("StartVPN")
+                            .setAction("StopVPN")
                             .build());
                     serverConnect.setChecked(false);
                     messageOkText.setVisibility(View.GONE);
@@ -266,7 +266,7 @@ public class ServerActivity extends BaseActivity {
                 } else {
                     mTracker.send(new HitBuilders.EventBuilder()
                             .setCategory("Action")
-                            .setAction("StopVPN")
+                            .setAction("StartVPN")
                             .build());
                     serverConnect.setChecked(true);
                     messageWaitText.setVisibility(View.VISIBLE);
