@@ -327,6 +327,7 @@ public class OpenVPNService extends VpnService implements StateListener, Callbac
                 mManagement.stopVPN(false);
             ServerActivity.serverConnect.setChecked(false);
             ServerActivity.messageOkText.setVisibility(View.GONE);
+            ServerActivity.messageWaitText.setVisibility(View.GONE);
             return START_NOT_STICKY;
         }
 
