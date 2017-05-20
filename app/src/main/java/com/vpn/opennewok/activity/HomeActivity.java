@@ -1,4 +1,4 @@
-package com.vpn.openok.activity;
+package com.vpn.opennewok.activity;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -8,9 +8,9 @@ import android.widget.Toast;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.vpn.R;
-import com.vpn.openok.App;
-import com.vpn.openok.model.Server;
-import com.vpn.openok.util.PropertiesService;
+import com.vpn.opennewok.App;
+import com.vpn.opennewok.model.Server;
+import com.vpn.opennewok.util.PropertiesService;
 
 public class HomeActivity extends BaseActivity {
 

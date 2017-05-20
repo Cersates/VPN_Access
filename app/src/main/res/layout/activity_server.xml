@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F6881F"
     android:orientation="vertical"
-    tools:context="com.vpn.openok.activity.ServerActivity">
+    tools:context="com.vpn.opennewok.activity.ServerActivity">
 
     <RelativeLayout
         android:layout_width="fill_parent"

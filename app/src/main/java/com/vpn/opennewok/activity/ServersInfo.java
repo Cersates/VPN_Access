@@ -1,4 +1,4 @@
-package com.vpn.openok.activity;
+package com.vpn.opennewok.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.util.DisplayMetrics;
 import android.widget.TextView;
 
 import com.vpn.R;
-import com.vpn.openok.database.DBHelper;
+import com.vpn.opennewok.database.DBHelper;
 
 public class ServersInfo extends AppCompatActivity {
 

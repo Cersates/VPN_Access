@@ -7,14 +7,14 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name="com.vpn.openok.App"
+        android:name="com.vpn.opennewok.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.vpn.openok.activity.LauncherActivity">
+        <activity android:name="com.vpn.opennewok.activity.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,19 +23,19 @@
         </activity>
 
         <activity
-            android:name="com.vpn.openok.activity.LoaderActivity"
+            android:name="com.vpn.opennewok.activity.LoaderActivity"
             android:noHistory="true" />
 
-        <activity android:name="com.vpn.openok.activity.HomeActivity"/>
+        <activity android:name="com.vpn.opennewok.activity.HomeActivity"/>
 
-        <activity android:name="com.vpn.openok.activity.ServersListActivity" />
+        <activity android:name="com.vpn.opennewok.activity.ServersListActivity" />
 
         <activity
-            android:name="com.vpn.openok.activity.ServerActivity"
+            android:name="com.vpn.opennewok.activity.ServerActivity"
             android:launchMode="singleTop" />
 
         <activity
-            android:name="com.vpn.openok.activity.ServersInfo"
+            android:name="com.vpn.opennewok.activity.ServersInfo"
             android:theme="@style/AppTheme.PopUp" />
 
         <service

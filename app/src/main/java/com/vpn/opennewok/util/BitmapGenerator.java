@@ -1,4 +1,4 @@
-package com.vpn.openok.util;
+package com.vpn.opennewok.util;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

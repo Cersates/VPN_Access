@@ -1,4 +1,4 @@
-package com.vpn.openok.activity;
+package com.vpn.opennewok.activity;
 
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
@@ -7,10 +7,10 @@ import android.util.DisplayMetrics;
 import android.widget.FrameLayout;
 
 import com.vpn.R;
-import com.vpn.openok.database.DBHelper;
-import com.vpn.openok.model.Server;
-import com.vpn.openok.util.CountriesNames;
-import com.vpn.openok.util.TotalTraffic;
+import com.vpn.opennewok.database.DBHelper;
+import com.vpn.opennewok.model.Server;
+import com.vpn.opennewok.util.CountriesNames;
+import com.vpn.opennewok.util.TotalTraffic;
 
 import org.json.JSONArray;
 import org.json.JSONException;

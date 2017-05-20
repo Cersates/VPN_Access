@@ -1,4 +1,4 @@
-package com.vpn.openok.activity;
+package com.vpn.opennewok.activity;
 
 import android.content.Intent;
 
@@ -8,8 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.vpn.R;
-import com.vpn.openok.adapter.ServerListAdapter;
-import com.vpn.openok.model.Server;
+import com.vpn.opennewok.adapter.ServerListAdapter;
+import com.vpn.opennewok.model.Server;
 
 import java.util.List;
 

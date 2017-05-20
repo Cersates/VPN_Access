@@ -1,4 +1,4 @@
-package com.vpn.openok.util;
+package com.vpn.opennewok.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

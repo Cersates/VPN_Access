@@ -1,4 +1,4 @@
-package com.vpn.openok.activity;
+package com.vpn.opennewok.activity;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -28,10 +28,10 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.vpn.BuildConfig;
 import com.vpn.R;
-import com.vpn.openok.App;
-import com.vpn.openok.model.Server;
-import com.vpn.openok.util.PropertiesService;
-import com.vpn.openok.util.TotalTraffic;
+import com.vpn.opennewok.App;
+import com.vpn.opennewok.model.Server;
+import com.vpn.opennewok.util.PropertiesService;
+import com.vpn.opennewok.util.TotalTraffic;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

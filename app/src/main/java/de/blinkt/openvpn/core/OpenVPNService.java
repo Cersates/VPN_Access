@@ -38,8 +38,8 @@ import com.vpn.BuildConfig;
 
 
 import com.vpn.R;
-import com.vpn.openok.activity.ServerActivity;
-import com.vpn.openok.util.TotalTraffic;
+import com.vpn.opennewok.activity.ServerActivity;
+import com.vpn.opennewok.util.TotalTraffic;
 
 
 import java.io.IOException;

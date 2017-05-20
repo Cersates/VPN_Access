@@ -1,10 +1,10 @@
-package com.vpn.openok.util;
+package com.vpn.opennewok.util;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.vpn.openok.App;
+import com.vpn.opennewok.App;
 
 
 public class NetworkState {

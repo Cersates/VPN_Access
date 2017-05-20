@@ -1,4 +1,4 @@
-package com.vpn.openok.model;
+package com.vpn.opennewok.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
