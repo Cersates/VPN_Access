@@ -1,4 +1,4 @@
-package com.vpn.openvk.activity;
+package com.vpn.opennewvk.activity;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -8,9 +8,9 @@ import android.widget.Toast;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.vpn.R;
-import com.vpn.openvk.App;
-import com.vpn.openvk.model.Server;
-import com.vpn.openvk.util.PropertiesService;
+import com.vpn.opennewvk.App;
+import com.vpn.opennewvk.model.Server;
+import com.vpn.opennewvk.util.PropertiesService;
 
 public class HomeActivity extends BaseActivity {
 

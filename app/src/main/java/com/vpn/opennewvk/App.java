@@ -1,4 +1,4 @@
-package com.vpn.openvk;
+package com.vpn.opennewvk;
 
 import android.app.Application;
 import android.content.Context;

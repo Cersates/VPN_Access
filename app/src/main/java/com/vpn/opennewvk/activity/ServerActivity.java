@@ -1,4 +1,4 @@
-package com.vpn.openvk.activity;
+package com.vpn.opennewvk.activity;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -28,10 +28,10 @@ import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.vpn.BuildConfig;
 import com.vpn.R;
-import com.vpn.openvk.App;
-import com.vpn.openvk.model.Server;
-import com.vpn.openvk.util.PropertiesService;
-import com.vpn.openvk.util.TotalTraffic;
+import com.vpn.opennewvk.App;
+import com.vpn.opennewvk.model.Server;
+import com.vpn.opennewvk.util.PropertiesService;
+import com.vpn.opennewvk.util.TotalTraffic;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.vpn.openvk.model;
+package com.vpn.opennewvk.model;
 
 public class Country {
 

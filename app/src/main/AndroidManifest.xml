@@ -7,14 +7,14 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name="com.vpn.openvk.App"
+        android:name="com.vpn.opennewvk.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.vpn.openvk.activity.LauncherActivity">
+        <activity android:name="com.vpn.opennewvk.activity.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,19 +23,19 @@
         </activity>
 
         <activity
-            android:name="com.vpn.openvk.activity.LoaderActivity"
+            android:name="com.vpn.opennewvk.activity.LoaderActivity"
             android:noHistory="true" />
 
-        <activity android:name="com.vpn.openvk.activity.HomeActivity"/>
+        <activity android:name="com.vpn.opennewvk.activity.HomeActivity"/>
 
-        <activity android:name="com.vpn.openvk.activity.ServersListActivity" />
+        <activity android:name="com.vpn.opennewvk.activity.ServersListActivity" />
 
         <activity
-            android:name="com.vpn.openvk.activity.ServerActivity"
+            android:name="com.vpn.opennewvk.activity.ServerActivity"
             android:launchMode="singleTop" />
 
         <activity
-            android:name="com.vpn.openvk.activity.ServersInfo"
+            android:name="com.vpn.opennewvk.activity.ServersInfo"
             android:theme="@style/AppTheme.PopUp" />
 
         <service

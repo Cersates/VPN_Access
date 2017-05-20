@@ -1,4 +1,4 @@
-package com.vpn.openvk.model;
+package com.vpn.opennewvk.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

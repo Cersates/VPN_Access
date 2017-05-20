@@ -1,4 +1,4 @@
-package com.vpn.openvk.activity;
+package com.vpn.opennewvk.activity;
 
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
@@ -7,10 +7,10 @@ import android.util.DisplayMetrics;
 import android.widget.FrameLayout;
 
 import com.vpn.R;
-import com.vpn.openvk.database.DBHelper;
-import com.vpn.openvk.model.Server;
-import com.vpn.openvk.util.CountriesNames;
-import com.vpn.openvk.util.TotalTraffic;
+import com.vpn.opennewvk.database.DBHelper;
+import com.vpn.opennewvk.model.Server;
+import com.vpn.opennewvk.util.CountriesNames;
+import com.vpn.opennewvk.util.TotalTraffic;
 
 import org.json.JSONArray;
 import org.json.JSONException;
