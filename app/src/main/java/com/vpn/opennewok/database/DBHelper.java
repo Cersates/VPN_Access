@@ -363,13 +363,22 @@ public class DBHelper extends SQLiteOpenHelper {
             do {
                 switch (cursor.getInt(16)) {
                     case 1:
-                        serverListBad.add(parseServer(cursor));
+                        Server serverBad = parseServer(cursor);
+                        if (isEurope(serverBad)) {
+                            serverListBad.add(serverBad);
+                        }
                         break;
                     case 2:
-                        serverListGood.add(parseServer(cursor));
+                        Server serverGood = parseServer(cursor);
+                        if (isEurope(serverGood)) {
+                            serverListGood.add(serverGood);
+                        }
                         break;
                     case 3:
-                        serverListExcellent.add(parseServer(cursor));
+                        Server serverExcellent = parseServer(cursor);
+                        if (isEurope(serverExcellent)) {
+                            serverListExcellent.add(serverExcellent);
+                        }
                         break;
                 }
 
@@ -391,6 +400,33 @@ public class DBHelper extends SQLiteOpenHelper {
         }
 
         return null;
+    }
+
+    private boolean isEurope(Server server) {
+        if ("Norway".equals(server.getCountryLong()) ||
+                "France".equals(server.getCountryLong()) ||
+                "Germany".equals(server.getCountryLong()) ||
+                "Romania".equals(server.getCountryLong()) ||
+                "Russian Federation".equals(server.getCountryLong()) ||
+                "Austria".equals(server.getCountryLong()) ||
+                "Canada".equals(server.getCountryLong()) ||
+                "Latvia".equals(server.getCountryLong()) ||
+                "Serbia".equals(server.getCountryLong()) ||
+                "Netherlands".equals(server.getCountryLong()) ||
+                "United Kingdom".equals(server.getCountryLong()) ||
+                "Greece".equals(server.getCountryLong()) ||
+                "Spain".equals(server.getCountryLong()) ||
+                "Finland".equals(server.getCountryLong()) ||
+                "Italy".equals(server.getCountryLong()) ||
+                "New Zealand".equals(server.getCountryLong()) ||
+                "Portugal".equals(server.getCountryLong()) ||
+                "Bosnia and Herzegowina".equals(server.getCountryLong())
+                ) {
+            return true;
+        }
+
+
+        return false;
     }
 
     public Server getSimilarServer(String country, String ip) {
