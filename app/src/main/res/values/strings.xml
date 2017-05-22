@@ -2,6 +2,7 @@
     <string name="app_name">Доступ ВК</string>
     <string name="app_ok_mesage">Теперь вы можете пользоваться Вконтакте!</string>
     <string name="app_wait_message">Ожидайте подключение несколько секунд...</string>
+    <string name="app_cant_connect">Не удалось подключиться.. \nВозможно у вас уже подключен другой VPN сервис</string>
 
     <string name="action_settings">Settings</string>
     <string name="home_btn_choose_country">Choose country</string>

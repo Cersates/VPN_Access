@@ -188,25 +188,28 @@ public class ServerActivity extends BaseActivity {
         if (intent.getStringExtra("detailstatus").equals("NOPROCESS")) {
             try {
                 TimeUnit.SECONDS.sleep(1);
-                if (!VpnStatus.isVPNActive())
+                if (!VpnStatus.isVPNActive()) {
                     prepareStopVPN();
+                    if (messageWaitText.getVisibility() == View.VISIBLE) {
+                        showErrorMesssage();
+                    }
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 
+    private void showErrorMesssage() {
+        connectingProgress.setVisibility(View.GONE);
+        serverConnect.setChecked(false);
+        messageWaitText.setVisibility(View.GONE);
+        messageOkText.setVisibility(View.GONE);
+        Toast.makeText(this, getString(R.string.app_cant_connect), Toast.LENGTH_LONG).show();
+    }
+
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-
-        if (waitConnection != null)
-            waitConnection.cancel(false);
-
-        if (isTaskRoot()) {
-            startActivity(new Intent(this, HomeActivity.class));
-            finish();
-        }
     }
 
     private boolean checkStatus() {
@@ -229,8 +232,9 @@ public class ServerActivity extends BaseActivity {
                         PropertiesService.setShowRating(false);
                     }
                 }
-                messageWaitText.setVisibility(View.GONE);
+                serverConnect.setChecked(true);
                 messageOkText.setVisibility(View.VISIBLE);
+                messageWaitText.setVisibility(View.GONE);
                 break;
             default:
                 toggleButtonText.setText(getString(R.string.server_btn_access));
