@@ -129,6 +129,45 @@ public class ServerActivity extends BaseActivity {
         }
     }
 
+    public void serverOnClick(View view) {
+        switch (view.getId()) {
+            case R.id.serverConnect:
+                if (checkStatus()) {
+                    mTracker.send(new HitBuilders.EventBuilder()
+                            .setCategory("Action")
+                            .setAction("StoptVPN")
+                            .build());
+                    serverConnect.setChecked(false);
+                    messageOkText.setVisibility(View.GONE);
+                    messageWaitText.setVisibility(View.GONE);
+                    stopVpn();
+                } else {
+                    mTracker.send(new HitBuilders.EventBuilder()
+                            .setCategory("Action")
+                            .setAction("StartVPN")
+                            .build());
+                    serverConnect.setChecked(true);
+                    messageWaitText.setVisibility(View.VISIBLE);
+                    messageOkText.setVisibility(View.GONE);
+                    prepareVpn();
+                }
+                break;
+        }
+    }
+
+    public void shareAction(View view) {
+        final Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        String textToSend = getString(R.string.share_text);
+        intent.putExtra(Intent.EXTRA_TEXT, textToSend);
+        try {
+            startActivity(Intent.createChooser(intent, getString(R.string.share_app_action)));
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(getApplicationContext(), "Не получилось..", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
     private void initView(Intent intent) {
 
         autoConnection = intent.getBooleanExtra("autoConnection", false);
@@ -253,32 +292,6 @@ public class ServerActivity extends BaseActivity {
         } else {
             connectingProgress.setVisibility(View.GONE);
             Toast.makeText(this, getString(R.string.server_error_loading_profile), Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void serverOnClick(View view) {
-        switch (view.getId()) {
-            case R.id.serverConnect:
-                if (checkStatus()) {
-                    mTracker.send(new HitBuilders.EventBuilder()
-                            .setCategory("Action")
-                            .setAction("StoptVPN")
-                            .build());
-                    serverConnect.setChecked(false);
-                    messageOkText.setVisibility(View.GONE);
-                    messageWaitText.setVisibility(View.GONE);
-                    stopVpn();
-                } else {
-                    mTracker.send(new HitBuilders.EventBuilder()
-                            .setCategory("Action")
-                            .setAction("StartVPN")
-                            .build());
-                    serverConnect.setChecked(true);
-                    messageWaitText.setVisibility(View.VISIBLE);
-                    messageOkText.setVisibility(View.GONE);
-                    prepareVpn();
-                }
-                break;
         }
     }
 

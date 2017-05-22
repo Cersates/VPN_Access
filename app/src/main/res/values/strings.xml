@@ -3,6 +3,8 @@
     <string name="app_ok_mesage">Теперь вы можете пользоваться Вконтакте!</string>
     <string name="app_wait_message">Ожидайте подключение несколько секунд...</string>
     <string name="app_cant_connect">Не удалось подключиться.. \nВозможно у вас уже подключен другой VPN сервис</string>
+    <string name="share_app_action">Поделиться приложением</string>
+    <string name="share_text">Оцените приложение для доступа ВК для Андроид! \n play.google.com/store/apps/details?id=com.vpn.opennewvk</string>
 
     <string name="action_settings">Settings</string>
     <string name="home_btn_choose_country">Choose country</string>

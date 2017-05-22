@@ -74,6 +74,16 @@
             android:indeterminateTint="#ffffff"
             android:visibility="gone" />
 
+        <Button
+            android:id="@+id/shareBtn"
+            android:layout_width="210dp"
+            android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center|bottom"
+            android:background="@drawable/share"
+            android:onClick="shareAction" />
+
     </RelativeLayout>
 
 </LinearLayout>
