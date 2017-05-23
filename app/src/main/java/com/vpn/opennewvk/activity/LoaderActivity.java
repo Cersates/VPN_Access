@@ -1,6 +1,7 @@
 package com.vpn.opennewvk.activity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Bundle;
@@ -52,6 +53,8 @@ public class LoaderActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loader);
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         progressBar = (NumberProgressBar) findViewById(R.id.number_progress_bar);
         commentsText = (TextView) findViewById(R.id.commentsText);

@@ -70,6 +70,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public Server getRandomServer() {
+
         Server randomServer = dbHelper.getGoodRandomServer();
 
         return randomServer;

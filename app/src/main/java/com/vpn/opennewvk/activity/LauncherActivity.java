@@ -3,6 +3,7 @@ package com.vpn.opennewvk.activity;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 
@@ -16,6 +17,8 @@ public class LauncherActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        
         if (NetworkState.isOnline()) {
             if (loadStatus) {
                 Intent myIntent = new Intent(this, HomeActivity.class);

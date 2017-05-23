@@ -141,81 +141,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void setBookmark(Server server) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-
-        contentValues.put(KEY_HOST_NAME, server.getHostName());
-        contentValues.put(KEY_IP, server.getIp());
-        contentValues.put(KEY_SCORE, server.getScore());
-        contentValues.put(KEY_PING, server.getPing());
-        contentValues.put(KEY_SPEED, server.getSpeed());
-        contentValues.put(KEY_COUNTRY_LONG, server.getCountryLong());
-        contentValues.put(KEY_COUNTRY_SHORT, server.getCountryShort());
-        contentValues.put(KEY_NUM_VPN_SESSIONS, server.getNumVpnSessions());
-        contentValues.put(KEY_UPTIME, server.getUptime());
-        contentValues.put(KEY_TOTAL_USERS, server.getTotalUsers());
-        contentValues.put(KEY_TOTAL_TRAFFIC, server.getTotalTraffic());
-        contentValues.put(KEY_LOG_TYPE, server.getLogType());
-        contentValues.put(KEY_OPERATOR, server.getOperator());
-        contentValues.put(KEY_MESSAGE, server.getMessage());
-        contentValues.put(KEY_CONFIG_DATA, server.getConfigData());
-        contentValues.put(KEY_TYPE, server.getType());
-        contentValues.put(KEY_QUALITY, server.getQuality());
-        contentValues.put(KEY_CITY, server.getCity());
-
-        db.insert(TABLE_BOOKMARK_SERVERS, null, contentValues);
-        db.close();
-    }
-
-    public void delBookmark(Server server) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_BOOKMARK_SERVERS, KEY_IP + " = ?", new String[]{server.getIp()});
-        db.close();
-    }
-
-    public List<Server> getBookmarks() {
-        List<Server> serverList = new ArrayList<Server>();
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.query(TABLE_BOOKMARK_SERVERS, null, null, null, null, null, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                serverList.add(parseServer(cursor));
-            } while (cursor.moveToNext());
-        } else {
-            Log.w(TAG, "0 rows");
-        }
-
-        cursor.close();
-        db.close();
-
-        return serverList;
-    }
-
-    public boolean checkBookmark(Server server) {
-        boolean result = false;
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.query(TABLE_BOOKMARK_SERVERS,
-                null,
-                KEY_IP + "=?",
-                new String[]{server.getIp()},
-                null,
-                null,
-                null);
-
-        if (cursor.moveToFirst()) {
-            result = true;
-        } else {
-            Log.w(TAG, "0 rows");
-        }
-
-        cursor.close();
-        db.close();
-
-        return result;
-    }
-
     public void putLine(String line, int type) {
         String[] data = line.split(",");
         if (data.length == 15) {
@@ -327,33 +252,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return serverList;
     }
 
-    public List<Server> getServersByCountryCode(String country) {
-        List<Server> serverList = new ArrayList<Server>();
-        if (country != null) {
-            SQLiteDatabase db = this.getWritableDatabase();
-            Cursor cursor = db.query(TABLE_SERVERS,
-                    null,
-                    KEY_COUNTRY_SHORT + "=?",
-                    new String[]{country},
-                    null,
-                    null,
-                    KEY_QUALITY + " DESC");
-
-            if (cursor.moveToFirst()) {
-                do {
-                    serverList.add(parseServer(cursor));
-                } while (cursor.moveToNext());
-            } else {
-                Log.w(TAG, "0 rows");
-            }
-
-            cursor.close();
-            db.close();
-        }
-
-        return serverList;
-    }
-
     private Server parseGoodRandomServer(Cursor cursor, SQLiteDatabase db) {
         List<Server> serverListExcellent = new ArrayList<Server>();
         List<Server> serverListGood = new ArrayList<Server>();
@@ -427,22 +325,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
         return false;
-    }
-
-    public Server getSimilarServer(String country, String ip) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM "
-                + TABLE_SERVERS
-                + " WHERE "
-                + KEY_QUALITY
-                + " <> 1 AND "
-                + KEY_COUNTRY_LONG
-                + " = ? AND "
-                + KEY_IP
-                + " <> ?", new String[]{country, ip});
-
-
-        return parseGoodRandomServer(cursor, db);
     }
 
     public Server getGoodRandomServer() {

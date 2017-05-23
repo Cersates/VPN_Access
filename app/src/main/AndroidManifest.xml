@@ -26,17 +26,11 @@
             android:name="com.vpn.opennewvk.activity.LoaderActivity"
             android:noHistory="true" />
 
-        <activity android:name="com.vpn.opennewvk.activity.HomeActivity"/>
-
-        <activity android:name="com.vpn.opennewvk.activity.ServersListActivity" />
+        <activity android:name="com.vpn.opennewvk.activity.HomeActivity" />
 
         <activity
             android:name="com.vpn.opennewvk.activity.ServerActivity"
             android:launchMode="singleTop" />
-
-        <activity
-            android:name="com.vpn.opennewvk.activity.ServersInfo"
-            android:theme="@style/AppTheme.PopUp" />
 
         <service
             android:name="de.blinkt.openvpn.core.OpenVPNService"

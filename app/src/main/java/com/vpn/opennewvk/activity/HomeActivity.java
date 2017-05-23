@@ -1,5 +1,6 @@
 package com.vpn.opennewvk.activity;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.PopupWindow;
@@ -21,6 +22,8 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         App application = (App) getApplication();
         mTracker = application.getDefaultTracker();

@@ -359,38 +359,41 @@ public class ServerActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        inBackground = false;
+        try {
+            inBackground = false;
 
-        if (currentServer.getCity() == null)
-            getIpInfo(currentServer);
+            if (currentServer.getCity() == null)/////
+                getIpInfo(currentServer);
 
-        if (connectedServer != null && currentServer.getIp().equals(connectedServer.getIp())) {
-            hideCurrentConnection = true;
-            invalidateOptionsMenu();
-        }
-
-
-        Intent intent = new Intent(this, OpenVPNService.class);
-        intent.setAction(OpenVPNService.START_SERVICE);
-        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
-
-        if (checkStatus()) {
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if (connectedServer != null && currentServer.getIp().equals(connectedServer.getIp())) {
+                hideCurrentConnection = true;
+                invalidateOptionsMenu();
             }
-            if (!checkStatus()) {
-                connectedServer = null;
+
+
+            Intent intent = new Intent(this, OpenVPNService.class);
+            intent.setAction(OpenVPNService.START_SERVICE);
+            bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+
+            if (checkStatus()) {
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if (!checkStatus()) {
+                    connectedServer = null;
+                    toggleButtonText.setText(getString(R.string.server_btn_access));
+                }
+            } else {
                 toggleButtonText.setText(getString(R.string.server_btn_access));
+                if (autoConnection) {
+                    prepareVpn();
+                    messageWaitText.setVisibility(View.VISIBLE);
+                    messageOkText.setVisibility(View.GONE);
+                }
             }
-        } else {
-            toggleButtonText.setText(getString(R.string.server_btn_access));
-            if (autoConnection) {
-                prepareVpn();
-                messageWaitText.setVisibility(View.VISIBLE);
-                messageOkText.setVisibility(View.GONE);
-            }
+        } catch (NullPointerException e) {
         }
     }
 
@@ -475,7 +478,7 @@ public class ServerActivity extends BaseActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
                                 stopVpn();
-                                autoServer = dbHelper.getSimilarServer(currentServer.getCountryLong(), currentServer.getIp());
+                                autoServer = dbHelper.getGoodRandomServer();
                                 if (autoServer != null) {
                                     newConnecting(autoServer, false, true);
                                 } else {
