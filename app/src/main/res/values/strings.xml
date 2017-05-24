@@ -2,7 +2,7 @@
     <string name="app_name">Доступ ВК</string>
     <string name="app_ok_mesage">Теперь вы можете пользоваться Вконтакте!</string>
     <string name="app_wait_message">Ожидайте подключение несколько секунд...</string>
-    <string name="app_cant_connect">Не удалось подключиться.. \nВозможно у вас уже подключен другой VPN сервис</string>
+    <string name="app_cant_connect">Не удалось подключиться.. \nВозможно у вас уже подключен другой VPN сервис. Зайдите в Настройки -> Дополнительно -> VPN и уберите найденое подключение</string>
     <string name="share_app_action">Поделиться приложением</string>
     <string name="share_text">Оцените приложение для доступа в ВК для Андроид! \n https://play.google.com/store/apps/details?id=com.vpn.opennewvk</string>
 
