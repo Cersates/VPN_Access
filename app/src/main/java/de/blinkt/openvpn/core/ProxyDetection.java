@@ -5,7 +5,7 @@
 
 package de.blinkt.openvpn.core;
 
-import com.vpn.R;
+import com.vpn.opennewvk.R;
 
 import java.net.InetSocketAddress;
 import java.net.MalformedURLException;

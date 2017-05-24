@@ -10,7 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
-import com.vpn.R;
+import com.vpn.opennewvk.R;
 
 import java.io.File;
 import java.io.FileOutputStream;

@@ -16,7 +16,7 @@ import android.os.Handler;
 import android.preference.PreferenceManager;
 
 
-import com.vpn.R;
+import com.vpn.opennewvk.R;
 
 import de.blinkt.openvpn.core.VpnStatus.ByteCountListener;
 

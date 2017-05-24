@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.widget.FrameLayout;
 
-import com.vpn.R;
+import com.vpn.opennewvk.R;
 import com.vpn.opennewvk.database.DBHelper;
 import com.vpn.opennewvk.model.Server;
 import com.vpn.opennewvk.util.CountriesNames;

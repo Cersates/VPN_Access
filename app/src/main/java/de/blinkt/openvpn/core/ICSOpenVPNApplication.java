@@ -14,7 +14,7 @@ import org.acra.annotation.ReportsCrashes;
 
 
 
-import com.vpn.BuildConfig;
+import com.vpn.opennewvk.BuildConfig;
 
 /*
 @ReportsCrashes(

@@ -16,7 +16,7 @@ import com.androidnetworking.interfaces.DownloadListener;
 import com.androidnetworking.interfaces.DownloadProgressListener;
 import com.daimajia.numberprogressbar.NumberProgressBar;
 
-import com.vpn.R;
+import com.vpn.opennewvk.R;
 import com.vpn.opennewvk.model.Server;
 import com.vpn.opennewvk.util.PropertiesService;
 

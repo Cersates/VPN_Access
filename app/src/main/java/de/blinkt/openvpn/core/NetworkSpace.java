@@ -8,7 +8,7 @@ package de.blinkt.openvpn.core;
 import android.os.Build;
 import android.support.annotation.NonNull;
 
-import com.vpn.BuildConfig;
+import com.vpn.opennewvk.BuildConfig;
 
 import junit.framework.Assert;
 

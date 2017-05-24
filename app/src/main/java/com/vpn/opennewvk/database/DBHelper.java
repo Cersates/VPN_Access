@@ -307,7 +307,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 "Romania".equals(server.getCountryLong()) ||
                 "Russian Federation".equals(server.getCountryLong()) ||
                 "Austria".equals(server.getCountryLong()) ||
-                "Canada".equals(server.getCountryLong()) ||
                 "Latvia".equals(server.getCountryLong()) ||
                 "Serbia".equals(server.getCountryLong()) ||
                 "Netherlands".equals(server.getCountryLong()) ||

@@ -9,7 +9,7 @@ import android.content.Context;
 import android.os.HandlerThread;
 import android.os.Message;
 
-import com.vpn.R;
+import com.vpn.opennewvk.R;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -61,7 +61,7 @@ public class VpnStatus {
     static final int MAXLOGENTRIES = 1000;
 
     public static boolean isVPNActive() {
-        return mLastLevel != ConnectionStatus.LEVEL_AUTH_FAILED && !(mLastLevel == ConnectionStatus.LEVEL_NOTCONNECTED);
+        return mLastLevel != ConnectionStatus.LEVEL_AUTH_FAILED && !(mLastLevel == ConnectionStatus.LEVEL_NOTCONNECTED);////////
     }
 
     public static String getLastCleanLogMessage(Context c) {

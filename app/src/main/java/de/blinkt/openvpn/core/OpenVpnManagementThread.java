@@ -14,8 +14,8 @@ import android.os.ParcelFileDescriptor;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.vpn.BuildConfig;
-import com.vpn.R;
+import com.vpn.opennewvk.BuildConfig;
+import com.vpn.opennewvk.R;
 
 import junit.framework.Assert;
 

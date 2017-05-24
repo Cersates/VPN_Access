@@ -8,7 +8,7 @@ package de.blinkt.openvpn.core;
 import android.annotation.SuppressLint;
 import android.util.Log;
 
-import com.vpn.R;
+import com.vpn.opennewvk.R;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

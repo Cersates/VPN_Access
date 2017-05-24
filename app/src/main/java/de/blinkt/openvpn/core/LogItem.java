@@ -13,7 +13,7 @@ import android.content.pm.Signature;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.vpn.R;
+import com.vpn.opennewvk.R;
 
 import java.io.ByteArrayInputStream;
 import java.io.UnsupportedEncodingException;

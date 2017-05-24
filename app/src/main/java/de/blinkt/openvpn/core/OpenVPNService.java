@@ -34,10 +34,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.vpn.BuildConfig;
+import com.vpn.opennewvk.BuildConfig;
 
 
-import com.vpn.R;
+import com.vpn.opennewvk.R;
 import com.vpn.opennewvk.activity.ServerActivity;
 import com.vpn.opennewvk.util.TotalTraffic;
 

@@ -9,7 +9,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
-import com.vpn.R;
+import com.vpn.opennewvk.R;
 
 import java.io.BufferedInputStream;
 import java.io.File;

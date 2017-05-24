@@ -7,7 +7,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 
-import com.vpn.R;
+import com.vpn.opennewvk.R;
 import com.vpn.opennewvk.util.NetworkState;
 
 public class LauncherActivity extends Activity {

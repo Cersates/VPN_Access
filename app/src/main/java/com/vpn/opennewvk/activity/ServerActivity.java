@@ -26,8 +26,8 @@ import android.widget.ToggleButton;
 
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
-import com.vpn.BuildConfig;
-import com.vpn.R;
+import com.vpn.opennewvk.BuildConfig;
+import com.vpn.opennewvk.R;
 import com.vpn.opennewvk.App;
 import com.vpn.opennewvk.model.Server;
 import com.vpn.opennewvk.util.PropertiesService;
@@ -249,6 +249,13 @@ public class ServerActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
+        if (waitConnection != null)
+            waitConnection.cancel(false);
+
+        if (isTaskRoot()) {
+            startActivity(new Intent(this, HomeActivity.class));
+            finish();
+        }
     }
 
     private boolean checkStatus() {
